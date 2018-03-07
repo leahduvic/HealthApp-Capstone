@@ -35,7 +35,6 @@ namespace HealthApp
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-
             services.AddMvc();
         }
 

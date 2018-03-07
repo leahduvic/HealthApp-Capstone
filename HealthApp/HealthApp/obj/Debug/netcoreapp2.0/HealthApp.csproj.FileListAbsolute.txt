@@ -1,0 +1,12 @@
+C:\Users\leahe_000\workspace\HealthApp-Capstone\HealthApp\HealthApp\obj\Debug\netcoreapp2.0\HealthApp.csprojResolveAssemblyReference.cache
+C:\Users\leahe_000\workspace\HealthApp-Capstone\HealthApp\HealthApp\obj\Debug\netcoreapp2.0\HealthApp.csproj.CoreCompileInputs.cache
+C:\Users\leahe_000\workspace\HealthApp-Capstone\HealthApp\HealthApp\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\leahe_000\workspace\HealthApp-Capstone\HealthApp\HealthApp\obj\Debug\netcoreapp2.0\HealthApp.AssemblyInfoInputs.cache
+C:\Users\leahe_000\workspace\HealthApp-Capstone\HealthApp\HealthApp\obj\Debug\netcoreapp2.0\HealthApp.AssemblyInfo.cs
+C:\Users\leahe_000\workspace\HealthApp-Capstone\HealthApp\HealthApp\bin\Debug\netcoreapp2.0\HealthApp.deps.json
+C:\Users\leahe_000\workspace\HealthApp-Capstone\HealthApp\HealthApp\bin\Debug\netcoreapp2.0\HealthApp.runtimeconfig.json
+C:\Users\leahe_000\workspace\HealthApp-Capstone\HealthApp\HealthApp\bin\Debug\netcoreapp2.0\HealthApp.runtimeconfig.dev.json
+C:\Users\leahe_000\workspace\HealthApp-Capstone\HealthApp\HealthApp\bin\Debug\netcoreapp2.0\HealthApp.dll
+C:\Users\leahe_000\workspace\HealthApp-Capstone\HealthApp\HealthApp\bin\Debug\netcoreapp2.0\HealthApp.pdb
+C:\Users\leahe_000\workspace\HealthApp-Capstone\HealthApp\HealthApp\obj\Debug\netcoreapp2.0\HealthApp.dll
+C:\Users\leahe_000\workspace\HealthApp-Capstone\HealthApp\HealthApp\obj\Debug\netcoreapp2.0\HealthApp.pdb

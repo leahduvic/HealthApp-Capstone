@@ -1,0 +1,64 @@
+﻿@model HealthApp.Models.MedicalRecord
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>MedicalRecord</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MedicalRecordId" />
+            <div class="form-group">
+                <label asp-for="RedBloodCount" class="control-label"></label>
+                <input asp-for="RedBloodCount" class="form-control" />
+                <span asp-validation-for="RedBloodCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WhiteBloodCount" class="control-label"></label>
+                <input asp-for="WhiteBloodCount" class="form-control" />
+                <span asp-validation-for="WhiteBloodCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BloodGlucose" class="control-label"></label>
+                <input asp-for="BloodGlucose" class="form-control" />
+                <span asp-validation-for="BloodGlucose" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cholestorol" class="control-label"></label>
+                <input asp-for="Cholestorol" class="form-control" />
+                <span asp-validation-for="Cholestorol" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hemoglobin" class="control-label"></label>
+                <input asp-for="Hemoglobin" class="form-control" />
+                <span asp-validation-for="Hemoglobin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Iron" class="control-label"></label>
+                <input asp-for="Iron" class="form-control" />
+                <span asp-validation-for="Iron" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="B12" class="control-label"></label>
+                <input asp-for="B12" class="form-control" />
+                <span asp-validation-for="B12" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

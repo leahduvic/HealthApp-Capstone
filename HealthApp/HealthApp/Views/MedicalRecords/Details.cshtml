@@ -1,0 +1,60 @@
+﻿@model HealthApp.Models.MedicalRecord
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MedicalRecord</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RedBloodCount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RedBloodCount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WhiteBloodCount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WhiteBloodCount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BloodGlucose)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BloodGlucose)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cholestorol)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cholestorol)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Hemoglobin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Hemoglobin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Iron)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Iron)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.B12)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.B12)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MedicalRecordId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
