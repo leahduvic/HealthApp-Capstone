@@ -56,7 +56,7 @@ namespace HealthApp.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ExerciseId,Title,Weight,Sets,Reps")] Exercise exercise)
+        public async Task<IActionResult> Create([Bind("ExerciseId,Title,Duration,Date,Weight,Sets,Reps")] Exercise exercise)
         {
             if (ModelState.IsValid)
             {
