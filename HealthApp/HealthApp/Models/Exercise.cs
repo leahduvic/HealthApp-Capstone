@@ -14,6 +14,11 @@ namespace HealthApp.Models
         [Required]
         public string Title { get; set; }
 
+        public string Duration { get; set; }
+
+        [Required]
+        public DateTime Date { get; set; }
+
         public int Weight { get; set; }
 
         public int Sets { get; set; }

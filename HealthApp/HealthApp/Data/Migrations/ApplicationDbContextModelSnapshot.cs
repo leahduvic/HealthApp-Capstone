@@ -84,6 +84,10 @@ namespace HealthApp.Data.Migrations
                     b.Property<int>("ExerciseId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("Date");
+
+                    b.Property<string>("Duration");
+
                     b.Property<int>("Reps");
 
                     b.Property<int>("Sets");
@@ -130,6 +134,8 @@ namespace HealthApp.Data.Migrations
 
                     b.Property<int>("Cholestorol");
 
+                    b.Property<DateTime>("Date");
+
                     b.Property<int>("Hemoglobin");
 
                     b.Property<int>("Iron");
@@ -153,6 +159,8 @@ namespace HealthApp.Data.Migrations
                     b.Property<int>("RoutineId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("Date");
+
                     b.Property<int>("ExerciseId");
 
                     b.Property<string>("UserId")
@@ -171,6 +179,8 @@ namespace HealthApp.Data.Migrations
                 {
                     b.Property<int>("UserMealId")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("Date");
 
                     b.Property<int>("MealId");
 

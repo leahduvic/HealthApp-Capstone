@@ -12,33 +12,39 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.RedBloodCount)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.WhiteBloodCount)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.BloodGlucose)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cholestorol)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Hemoglobin)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Iron)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.B12)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RedBloodCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WhiteBloodCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BloodGlucose)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cholestorol)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hemoglobin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Iron)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.B12)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RedBloodCount)
             </td>

@@ -15,6 +15,9 @@ namespace HealthApp.Models
         public ApplicationUser User { get; set; }
 
         [Required]
+        public DateTime Date { get; set; }
+
+        [Required]
         public int MealId { get; set; }
         public Meal Meal { get; set; }
     }

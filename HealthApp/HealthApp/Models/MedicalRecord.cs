@@ -14,6 +14,9 @@ namespace HealthApp.Models
         [Required]
         public ApplicationUser User { get; set; }
 
+        [Required]
+        public DateTime Date { get; set; }
+
         public int RedBloodCount { get; set; }
 
         public int WhiteBloodCount { get; set; }

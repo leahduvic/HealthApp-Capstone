@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HealthApp.Data;
 using HealthApp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HealthApp.Controllers
 {
@@ -52,6 +53,7 @@ namespace HealthApp.Controllers
         // POST: Exercises/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ExerciseId,Title,Weight,Sets,Reps")] Exercise exercise)
