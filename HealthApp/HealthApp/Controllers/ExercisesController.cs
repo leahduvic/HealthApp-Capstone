@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HealthApp.Data;
 using HealthApp.Models;
 using Microsoft.AspNetCore.Authorization;
+
 
 namespace HealthApp.Controllers
 {
@@ -43,6 +43,15 @@ namespace HealthApp.Controllers
 
             return View(exercise);
         }
+
+        //GET: Display Exercise Data
+        //public async Task<IActionResult> ExerciseChart()
+        //{
+        //    var exerciseChart = await _context.Exercises
+        //        .GroupBy(e => e.Title,
+        //        d => d.Duration.Count()
+                
+       // }
 
         // GET: Exercises/Create
         public IActionResult Create()
