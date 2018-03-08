@@ -286,6 +286,20 @@ namespace HealthApp.Controllers
             return RedirectToAction(nameof(ExternalLogins));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> PersonalSettings()
+        {
+            
+            var UserID = new PersonalSettingsViewModel()
+            {
+                User = await _userManager.GetUserAsync(User)
+            };
+            return View(UserID);
+        }
+
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoveLogin(RemoveLoginViewModel model)
