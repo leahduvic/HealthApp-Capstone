@@ -27,8 +27,14 @@ namespace HealthApp.Data.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<int?>("BMI");
+
+                    b.Property<int?>("BodyWeight");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
+
+                    b.Property<DateTime?>("Date");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);

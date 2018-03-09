@@ -289,14 +289,26 @@ namespace HealthApp.Controllers
         [HttpGet]
         public async Task<IActionResult> PersonalSettings()
         {
-            
+            ApplicationUser user = await _userManager.GetUserAsync(User);
             var UserID = new PersonalSettingsViewModel()
             {
-                User = await _userManager.GetUserAsync(User)
+                User = user,
+                BodyWeight = user.BodyWeight,
+                BMI = user.BMI
             };
             return View(UserID);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> PersonalSettings(PersonalSettingsViewModel model)
+        {
+            ApplicationUser user = await _userManager.GetUserAsync(User);
+            user.BodyWeight = model.BodyWeight;
+            user.BMI = model.BMI;
+            await _userManager.UpdateAsync(user);
+            
+            return View();
+        }
 
 
 

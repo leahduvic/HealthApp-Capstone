@@ -9,9 +9,9 @@ namespace HealthApp.Models.ManageViewModels
     {
         public ApplicationUser User { get; set; }
 
-        public int BodyWeight { get; set; }
+        public int? BodyWeight { get; set; }
 
-        public int BMI { get; set; }
+        public int? BMI { get; set; }
 
         public string StatusMessage { get; set; }
     }
