@@ -20,13 +20,9 @@ namespace HealthApp.Models
         [StringLength(55, ErrorMessage = "Sorry, too long")]
         public string LastName { get; set; }
 
-        public int? BodyWeight { get; set; }
+        // tables where the AU is the FK.
+        public virtual ICollection<Measurement> Measurements { get; set; }
 
-        public int? BMI { get; set; }
-
-        public DateTime? Date { get; set; }
-
-        // tables where the AU is the FK. 
         public virtual ICollection<Routine> Routines { get; set; }
 
         public virtual ICollection<UserMeal> UserMeals { get; set; }

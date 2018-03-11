@@ -27,14 +27,8 @@ namespace HealthApp.Data.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<int?>("BMI");
-
-                    b.Property<int?>("BodyWeight");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
-
-                    b.Property<DateTime?>("Date");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
@@ -127,6 +121,27 @@ namespace HealthApp.Data.Migrations
                     b.HasKey("MealId");
 
                     b.ToTable("Meals");
+                });
+
+            modelBuilder.Entity("HealthApp.Models.Measurement", b =>
+                {
+                    b.Property<int>("MeasurementId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BMI");
+
+                    b.Property<int>("BodyWeight");
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<string>("UserId")
+                        .IsRequired();
+
+                    b.HasKey("MeasurementId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Measurements");
                 });
 
             modelBuilder.Entity("HealthApp.Models.MedicalRecord", b =>
@@ -310,6 +325,14 @@ namespace HealthApp.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("HealthApp.Models.Measurement", b =>
+                {
+                    b.HasOne("HealthApp.Models.ApplicationUser", "User")
+                        .WithMany("Measurements")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("HealthApp.Models.MedicalRecord", b =>

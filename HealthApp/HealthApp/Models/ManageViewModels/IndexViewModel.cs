@@ -10,6 +10,8 @@ namespace HealthApp.Models.ManageViewModels
     {
         public string Username { get; set; }
 
+        public string FirstName { get; set; }
+
         public bool IsEmailConfirmed { get; set; }
 
         [Required]

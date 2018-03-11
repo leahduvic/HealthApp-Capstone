@@ -25,6 +25,9 @@ namespace HealthApp.Data
 
         public DbSet<UserMeal> UserMeals { get; set; }
 
+        public DbSet<Measurement> Measurements { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

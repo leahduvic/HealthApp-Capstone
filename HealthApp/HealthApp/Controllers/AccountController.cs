@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using HealthApp.Models;
 using HealthApp.Models.AccountViewModels;
 using HealthApp.Services;
+using HealthApp.Data;
 
 namespace HealthApp.Controllers
 {
@@ -24,9 +25,11 @@ namespace HealthApp.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        private readonly ApplicationDbContext _context;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
+            ApplicationDbContext context,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger)
@@ -35,10 +38,20 @@ namespace HealthApp.Controllers
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _context = context;
         }
 
         [TempData]
         public string ErrorMessage { get; set; }
+
+        [HttpGet]
+        public async Task<IActionResult> UserDetails()
+        {
+            ApplicationUser user = await _userManager.GetUserAsync(User);
+            var measurements = _context.Measurements.Where(m => m.User.Id == user.Id).ToList();
+            
+            return View(measurements);
+        }
 
         [HttpGet]
         [AllowAnonymous]

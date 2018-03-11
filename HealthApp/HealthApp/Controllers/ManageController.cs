@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using HealthApp.Models;
 using HealthApp.Models.ManageViewModels;
 using HealthApp.Services;
+using HealthApp.Data;
 
 namespace HealthApp.Controllers
 {
@@ -25,12 +26,14 @@ namespace HealthApp.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
         private readonly UrlEncoder _urlEncoder;
+        private readonly ApplicationDbContext _context;
 
         private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
         private const string RecoveryCodesKey = nameof(RecoveryCodesKey);
 
         public ManageController(
           UserManager<ApplicationUser> userManager,
+          ApplicationDbContext context,
           SignInManager<ApplicationUser> signInManager,
           IEmailSender emailSender,
           ILogger<ManageController> logger,
@@ -41,6 +44,7 @@ namespace HealthApp.Controllers
             _emailSender = emailSender;
             _logger = logger;
             _urlEncoder = urlEncoder;
+            _context = context;
         }
 
         [TempData]
@@ -287,32 +291,37 @@ namespace HealthApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> PersonalSettings()
+        public IActionResult PersonalSettings()
         {
-            ApplicationUser user = await _userManager.GetUserAsync(User);
-            var UserID = new PersonalSettingsViewModel()
-            {
-                User = user,
-                BodyWeight = user.BodyWeight,
-                BMI = user.BMI
-            };
-            return View(UserID);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> PersonalSettings(PersonalSettingsViewModel model)
-        {
-            ApplicationUser user = await _userManager.GetUserAsync(User);
-            user.BodyWeight = model.BodyWeight;
-            user.BMI = model.BMI;
-            await _userManager.UpdateAsync(user);
             
             return View();
         }
 
-
-
         [HttpPost]
+        //posting the information to the db.
+        public async Task<IActionResult> PersonalSettings(PersonalSettingsViewModel model)
+        {
+            ModelState.Remove("User");
+            //ApplicationUser user = await _userManager.GetUserAsync(User);
+            var measurement = new Measurement()
+            {
+                User = await _userManager.GetUserAsync(User),
+                BodyWeight = model.BodyWeight,
+                BMI = model.BMI,
+                Date = DateTime.UtcNow
+             };
+
+            if (ModelState.IsValid)
+            {
+                _context.Add(measurement);
+                await _context.SaveChangesAsync(); 
+                return RedirectToAction("UserDetails", "Account");
+            }
+
+            return View();
+        }
+
+    [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoveLogin(RemoveLoginViewModel model)
         {
