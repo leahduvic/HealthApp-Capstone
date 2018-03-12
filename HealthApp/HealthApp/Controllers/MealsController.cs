@@ -60,9 +60,20 @@ namespace HealthApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(meal);
+                var model = new Meal
+                {
+                    MealId = meal.MealId,
+                    Title = meal.Title,
+                    Protein = meal.Protein,
+                    Carbohydrates = meal.Carbohydrates,
+                    Sugar = meal.Sugar,
+                    Sodium = meal.Sodium
+                };
+
+
+                _context.Add(model);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Meals", new { id = model.MealId });
             }
             return View(meal);
         }

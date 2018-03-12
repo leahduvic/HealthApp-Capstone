@@ -7,16 +7,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HealthApp.Data;
 using HealthApp.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HealthApp.Controllers
 {
     public class MedicalRecordsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public MedicalRecordsController(ApplicationDbContext context)
+        public MedicalRecordsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: MedicalRecords
@@ -52,17 +56,35 @@ namespace HealthApp.Controllers
         // POST: MedicalRecords/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MedicalRecordId,Date,RedBloodCount,WhiteBloodCount,BloodGlucose,Cholestorol,Hemoglobin,Iron,B12")] MedicalRecord medicalRecord)
         {
+            ModelState.Remove("User");
+
             if (ModelState.IsValid)
             {
-                _context.Add(medicalRecord);
+
+                var modelM = new MedicalRecord
+                {
+                    MedicalRecordId = medicalRecord.MedicalRecordId,
+                    User = await _userManager.GetUserAsync(User),
+                    Date = medicalRecord.Date,
+                    RedBloodCount = medicalRecord.RedBloodCount,
+                    WhiteBloodCount = medicalRecord.WhiteBloodCount,
+                    BloodGlucose = medicalRecord.BloodGlucose,
+                    Cholestorol = medicalRecord.Cholestorol,
+                    Hemoglobin = medicalRecord.Hemoglobin,
+                    Iron = medicalRecord.Iron,
+                    B12 = medicalRecord.B12
+                };
+
+                _context.Add(modelM);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "MedicalRecords", new { id = modelM.MedicalRecordId });
             }
-            return View(medicalRecord);
+            return View();
         }
 
         // GET: MedicalRecords/Edit/5
