@@ -44,15 +44,6 @@ namespace HealthApp.Controllers
             return View(exercise);
         }
 
-        //GET: Display Exercise Data
-        //public async Task<IActionResult> ExerciseChart()
-        //{
-        //    var exerciseChart = await _context.Exercises
-        //        .GroupBy(e => e.Title,
-        //        d => d.Duration.Count()
-                
-       // }
-
         // GET: Exercises/Create
         public IActionResult Create()
         {
@@ -69,11 +60,23 @@ namespace HealthApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(exercise);
+                // creating a new instance of the Exercise model (calling it simply model) to save to db.
+                var model = new Exercise
+                {
+                    ExerciseId = exercise.ExerciseId,
+                    Title = exercise.Title,
+                    Duration = exercise.Duration,
+                    Date = exercise.Date,
+                    Weight = exercise.Weight,
+                    Sets = exercise.Sets,
+                    Reps = exercise.Reps
+                };
+
+                _context.Add(model);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Exercises", new { id = model.ExerciseId });
             }
-            return View(exercise);
+            return View();
         }
 
         // GET: Exercises/Edit/5

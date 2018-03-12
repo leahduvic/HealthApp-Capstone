@@ -62,6 +62,7 @@ namespace HealthApp.Controllers
             var model = new IndexViewModel
             {
                 Username = user.UserName,
+                FirstName = user.FirstName,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 IsEmailConfirmed = user.EmailConfirmed,
