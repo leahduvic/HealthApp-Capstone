@@ -13133,11 +13133,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\leahe_000\\workspace\\HealthApp-Capstone\\HealthApp\\HealthApp\\HealthApp.csproj",
+      "projectUniqueName": "C:\\Users\\leahe_000\\workspace\\capstone\\HealthApp-Capstone\\HealthApp\\HealthApp\\HealthApp.csproj",
       "projectName": "HealthApp",
-      "projectPath": "C:\\Users\\leahe_000\\workspace\\HealthApp-Capstone\\HealthApp\\HealthApp\\HealthApp.csproj",
+      "projectPath": "C:\\Users\\leahe_000\\workspace\\capstone\\HealthApp-Capstone\\HealthApp\\HealthApp\\HealthApp.csproj",
       "packagesPath": "C:\\Users\\leahe_000\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\leahe_000\\workspace\\HealthApp-Capstone\\HealthApp\\HealthApp\\obj\\",
+      "outputPath": "C:\\Users\\leahe_000\\workspace\\capstone\\HealthApp-Capstone\\HealthApp\\HealthApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

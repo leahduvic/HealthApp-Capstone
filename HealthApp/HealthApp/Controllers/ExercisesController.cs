@@ -7,23 +7,30 @@ using Microsoft.EntityFrameworkCore;
 using HealthApp.Data;
 using HealthApp.Models;
 using Microsoft.AspNetCore.Authorization;
-
+using Microsoft.AspNetCore.Identity;
 
 namespace HealthApp.Controllers
 {
     public class ExercisesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ExercisesController(ApplicationDbContext context)
+        public ExercisesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Exercises
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Exercises.ToListAsync());
+            ApplicationUser user = await GetCurrentUserAsync();
+            return View(await _context.Exercises
+                .Where(us => us.User == user)
+                .ToListAsync());
         }
 
         // GET: Exercises/Details/5
@@ -56,7 +63,7 @@ namespace HealthApp.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ExerciseId,Title,Duration,Date,Weight,Sets,Reps")] Exercise exercise)
+        public async Task<IActionResult> Create([Bind("ExerciseId,Title,Duration,Date,Weight,Sets,Reps,RoutineId")] Exercise exercise)
         {
             if (ModelState.IsValid)
             {

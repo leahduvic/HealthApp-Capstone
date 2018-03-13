@@ -12,7 +12,7 @@ namespace HealthApp.Models
         public int UserMealId { get; set; }
 
         [Required]
-        public ApplicationUser User { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         [Required]
         public DateTime Date { get; set; }

@@ -8,22 +8,30 @@ using Microsoft.EntityFrameworkCore;
 using HealthApp.Data;
 using HealthApp.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace HealthApp.Controllers
 {
     public class MealsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public MealsController(ApplicationDbContext context)
+        public MealsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Meals
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Meals.ToListAsync());
+            ApplicationUser user = await GetCurrentUserAsync();
+            return View(await _context.Meals
+                .Where(s => s.User == user)
+                .ToListAsync());
         }
 
         // GET: Meals/Details/5

@@ -12,6 +12,9 @@ namespace HealthApp.Models
         public int MealId { get; set; }
 
         [Required]
+        public virtual ApplicationUser User { get; set; }
+
+        [Required]
         public string Title { get; set; }
 
         public int Protein { get; set; }

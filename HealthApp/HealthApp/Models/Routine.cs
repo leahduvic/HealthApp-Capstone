@@ -12,13 +12,11 @@ namespace HealthApp.Models
         public int RoutineId { get; set; }
 
         [Required]
-        public ApplicationUser User { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         [Required]
         public DateTime Date { get; set; }
 
-        [Required]
-        public int ExerciseId { get; set; }
-        public Exercise Exercise { get; set; }
+        public virtual ICollection<Exercise> Exercises { get; set; }
     }
 }

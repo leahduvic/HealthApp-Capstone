@@ -23,10 +23,15 @@ namespace HealthApp.Controllers
             _userManager = userManager;
         }
 
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+
         // GET: MedicalRecords
         public async Task<IActionResult> Index()
         {
-            return View(await _context.MedicalRecords.ToListAsync());
+            ApplicationUser user = await GetCurrentUserAsync();
+            return View(await _context.MedicalRecords
+                .Where(m => m.User == user)
+                .ToListAsync());
         }
 
         // GET: MedicalRecords/Details/5
