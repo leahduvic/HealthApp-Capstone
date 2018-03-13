@@ -10,8 +10,8 @@ namespace HealthApp.Models
     {
         [Key]
         public int MeasurementId { get; set; }
-        [Required]
 
+        [Required]
         public virtual ApplicationUser User { get; set; }
 
         public int BodyWeight { get; set; }
