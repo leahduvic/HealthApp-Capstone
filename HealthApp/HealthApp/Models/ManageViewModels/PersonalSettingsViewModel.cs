@@ -15,6 +15,6 @@ namespace HealthApp.Models.ManageViewModels
 
         public int BMI { get; set; }
 
-        public string StatusMessage { get; set; }
+        public List<Measurement> Measurements { get; set; }
     }
 }

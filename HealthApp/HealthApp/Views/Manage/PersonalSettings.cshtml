@@ -1,8 +1,10 @@
-﻿@model PersonalSettingsViewModel
+﻿
+@model HealthApp.Models.ManageViewModels.PersonalSettingsViewModel
+
 
 @{
-    ViewData["Title"] = "Personal Settings";
-    ViewData.AddActivePage(ManageNavPages.PersonalSettings);
+    ViewData["Title"] = "Details";
+    ViewData.AddActivePage(ManageNavPages.Details);
 }
 
 <h4>@ViewData["Title"]</h4>
@@ -23,13 +25,8 @@
                 <input asp-for="BMI" class="form-control" />
                 <span asp-validation-for="BMI" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-default" asp-action="PersonalSettings">Submit</button>
+            <button type="submit" class="btn btn-default" asp-action="Details">Submit</button>
         </form>
     </div>
 </div>
-
-@section Scripts {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
-}
-
 

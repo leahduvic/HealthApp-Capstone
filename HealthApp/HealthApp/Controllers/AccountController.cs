@@ -45,15 +45,6 @@ namespace HealthApp.Controllers
         public string ErrorMessage { get; set; }
 
         [HttpGet]
-        public async Task<IActionResult> UserDetails()
-        {
-            ApplicationUser user = await _userManager.GetUserAsync(User);
-            var measurements = _context.Measurements.Where(m => m.User.Id == user.Id).ToList();
-            
-            return View(measurements);
-        }
-
-        [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl = null)
         {

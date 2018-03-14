@@ -294,8 +294,19 @@ namespace HealthApp.Controllers
         [HttpGet]
         public IActionResult PersonalSettings()
         {
-            
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> SettingsDetails()
+        {
+            ApplicationUser user = await _userManager.GetUserAsync(User);
+            var measurements = _context.Measurements.Where(m => m.User.Id == user.Id).ToList();
+
+            var model = new PersonalSettingsViewModel();
+            
+            return View(measurements);
+            
         }
 
         [HttpPost]
@@ -316,7 +327,7 @@ namespace HealthApp.Controllers
             {
                 _context.Add(measurement);
                 await _context.SaveChangesAsync(); 
-                return RedirectToAction("UserDetails", "Account");
+                return RedirectToAction("SettingsDetails", "Manage");
             }
 
             return View();

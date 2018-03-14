@@ -19,7 +19,7 @@ namespace HealthApp.Views.Manage
 
         public static string TwoFactorAuthentication => "TwoFactorAuthentication";
 
-        public static string PersonalSettings => "PersonalSettings";
+        public static string Details => "Details";
 
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
 
@@ -29,7 +29,7 @@ namespace HealthApp.Views.Manage
 
         public static string TwoFactorAuthenticationNavClass(ViewContext viewContext) => PageNavClass(viewContext, TwoFactorAuthentication);
 
-        public static string PersonalSettingsNavClass(ViewContext viewContext) => PageNavClass(viewContext, PersonalSettings);
+        public static string PersonalSettingsNavClass(ViewContext viewContext) => PageNavClass(viewContext, Details);
 
         public static string PageNavClass(ViewContext viewContext, string page)
         {

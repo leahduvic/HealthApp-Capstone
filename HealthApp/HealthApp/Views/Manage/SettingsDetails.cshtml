@@ -1,13 +1,25 @@
 ﻿@model List<Measurement>
 
+
 @{
-    ViewData["Title"] = "User Details";
+    ViewData["Title"] = "SettingsDetails";
 }
 
 <h4>Personal Details</h4>
-@foreach (var item in Model)
+
+@if (== null)
 {
-    <hr />
+<p>
+    <a asp-action="PersonalSettings">Add Personal Info</a>
+</p>
+} else
+{
+    <p>
+        <a asp-action="PersonalSettings">Update Info</a>
+    </p>
+    @foreach (var item in Model)
+    {
+        <hr />
         <div>
             <dl class="dl-horizontal">
                 <dt>
@@ -30,5 +42,11 @@
                 </dd>
             </dl>
         </div>
+    }
 }
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
 
