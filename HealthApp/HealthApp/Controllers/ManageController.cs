@@ -14,6 +14,7 @@ using HealthApp.Models;
 using HealthApp.Models.ManageViewModels;
 using HealthApp.Services;
 using HealthApp.Data;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace HealthApp.Controllers
 {
@@ -291,10 +292,22 @@ namespace HealthApp.Controllers
             return RedirectToAction(nameof(ExternalLogins));
         }
 
+
+
         [HttpGet]
-        public IActionResult PersonalSettings()
+        public async Task<IActionResult> PersonalSettings()
         {
-            return View();
+
+            ApplicationUser user = await _userManager.GetUserAsync(User);
+            var userData = _context.Measurements.Where(um => um.User.Id == user.Id);
+            if (userData.Count() == 0)
+            {
+                return View();
+            }
+            else
+               {
+                return RedirectToAction("SettingsDetails");
+               }
         }
 
         [HttpGet]
@@ -303,9 +316,13 @@ namespace HealthApp.Controllers
             ApplicationUser user = await _userManager.GetUserAsync(User);
             var measurements = _context.Measurements.Where(m => m.User.Id == user.Id).ToList();
 
-            var model = new PersonalSettingsViewModel();
-            
-            return View(measurements);
+            var model = new PersonalSettingsViewModel
+            {
+                User = user,
+                Measurements = measurements
+            };
+
+            return View(model);
             
         }
 
