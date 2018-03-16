@@ -65,12 +65,12 @@ namespace HealthApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ExerciseId,Title,Duration,Date,Weight,Sets,Reps,RoutineId")] Exercise exercise)
         {
-            if (ModelState.IsValid)
-            {
+                ModelState.Remove("User");
                 // creating a new instance of the Exercise model (calling it simply model) to save to db.
                 var model = new Exercise
                 {
                     ExerciseId = exercise.ExerciseId,
+                    User = await _userManager.GetUserAsync(User),
                     Title = exercise.Title,
                     Duration = exercise.Duration,
                     Date = exercise.Date,
@@ -79,6 +79,8 @@ namespace HealthApp.Controllers
                     Reps = exercise.Reps
                 };
 
+            if (ModelState.IsValid)
+            {
                 _context.Add(model);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Details", "Exercises", new { id = model.ExerciseId });

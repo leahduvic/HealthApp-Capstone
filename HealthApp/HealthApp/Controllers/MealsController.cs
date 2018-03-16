@@ -66,19 +66,21 @@ namespace HealthApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MealId,Title,Protein,Carbohydrates,Sugar,Sodium")] Meal meal)
         {
+            ModelState.Remove("User");
+            var model = new Meal
+            {
+                MealId = meal.MealId,
+                User = await _userManager.GetUserAsync(User),
+                Title = meal.Title,
+                Protein = meal.Protein,
+                Carbohydrates = meal.Carbohydrates,
+                Sugar = meal.Sugar,
+                Sodium = meal.Sodium
+             };
+
+
             if (ModelState.IsValid)
             {
-                var model = new Meal
-                {
-                    MealId = meal.MealId,
-                    Title = meal.Title,
-                    Protein = meal.Protein,
-                    Carbohydrates = meal.Carbohydrates,
-                    Sugar = meal.Sugar,
-                    Sodium = meal.Sodium
-                };
-
-
                 _context.Add(model);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Details", "Meals", new { id = model.MealId });
