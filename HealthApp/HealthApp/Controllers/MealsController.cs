@@ -30,11 +30,11 @@ namespace HealthApp.Controllers
         {
             ApplicationUser user = await GetCurrentUserAsync();
             return View(await _context.Meals
-                .Where(s => s.User == user)
-                .ToListAsync());
+                    .Where(s => s.User == user)
+                    .ToListAsync());
         }
 
-        // GET: Meals/Details/5
+        // GET: meals/details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
