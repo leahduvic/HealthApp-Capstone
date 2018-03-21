@@ -1,27 +1,14 @@
 ﻿@model HealthApp.Models.Routine
 
 @{
-    ViewData["Title"] = "Routine";
+    ViewData["Title"] = "Details";
 }
 
-<h2>Routine</h2>
+<h2>Routine Details</h2>
 
 <div>
-    <h4>Exercise</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Duration)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Duration)
-        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Date)
         </dt>
@@ -29,26 +16,13 @@
             @Html.DisplayFor(model => model.Date)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Weight)
+            @Html.DisplayNameFor(model => model.Exercises)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Weight)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Sets)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Sets)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Reps)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Reps)
+            @Html.DisplayFor(model => model.Exercises)
         </dd>
     </dl>
 </div>
-
 <div>
     <a asp-action="Edit" asp-route-id="@Model.RoutineId">Edit</a> |
     <a asp-action="Index">Back to List</a>

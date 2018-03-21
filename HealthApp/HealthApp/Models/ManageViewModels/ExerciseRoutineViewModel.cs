@@ -9,7 +9,9 @@ namespace HealthApp.Models.ManageViewModels
     public class ExerciseRoutineViewModel
     {
         [Required]
-        public int RoutineId { get; set; }
+        public Routine RoutineId { get; set; }
+
+        public ApplicationUser User { get; set; }
 
         public DateTime Date { get; set; }
 

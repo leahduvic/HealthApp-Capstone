@@ -1,34 +1,30 @@
-﻿@model HealthApp.Models.Routine
+﻿@model HealthApp.Models.ManageViewModels.ExerciseRoutineViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Routine";
 }
 
-<h4>Routine</h4>
-<hr />
+<h4>@ViewData["Routine"]</h4>
+<p class="text-info">
+    Track daily routines
+</p>
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
+                <label asp-for="Date"></label>
                 <input asp-for="Date" class="form-control" />
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Exercises" class="control-label"></label>
+                <label asp-for="Exercises"></label>
                 <input asp-for="Exercises" class="form-control" />
                 <span asp-validation-for="Exercises" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+            <button type="submit" class="btn btn-default" asp-action="Create">Submit</button>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

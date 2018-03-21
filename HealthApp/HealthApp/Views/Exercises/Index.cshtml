@@ -7,7 +7,8 @@
 <h2>Exercise</h2>
 
 <p>
-    <a asp-action="Create">Enter New Exercise</a>
+    <a asp-action="Create">Enter New Exercise</a> |
+    <a asp-action="ExerciseChart">Chart Details</a> 
 </p>
 
 <table class="table">
@@ -59,7 +60,8 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ExerciseId">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.ExerciseId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ExerciseId">Delete</a> 
+                    <a asp-action="Delete" asp-route-id="@item.ExerciseId">Delete</a> |
+                    @*<a asp-action="Create" asp-route-id="@item.RoutineId">Add to Routine</a>*@
                 </td>
             </tr>
         }

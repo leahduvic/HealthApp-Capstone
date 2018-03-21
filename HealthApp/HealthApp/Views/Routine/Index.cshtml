@@ -1,5 +1,43 @@
-﻿@model HealthApp.Models.ManageViewModels.ExerciseRoutineViewModel
+﻿@model IEnumerable<HealthApp.Models.Routine>
 
 @{
-    
+    ViewData["Title"] = "Index";
 }
+
+<h2>ERoutines</h2>
+
+<p>
+    <a asp-action="Create">Enter New Routine</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Exercises)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Exercises)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.RoutineId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.RoutineId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.RoutineId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,79 @@
+﻿@model List<HealthApp.Models.Exercise>
+
+@{
+    ViewData["Title"] = "ExerciseChart";
+}
+
+<h2>Chart</h2>
+
+<div>
+    <canvas id="bar-chart-grouped" width="800" height="450"></canvas>
+@section Scripts {
+    <script type="text/javascript">
+        @{
+            var date = new List<string>();
+            var duration = new List<string>();
+            var title = new List<string>();
+
+            @foreach (var e in Model 
+                .OrderByDescending(m => m.Date)
+                )
+            {
+              
+                date.Add((@e.Date.DayOfWeek).ToString());
+                duration.Add(@e.Duration);
+                title.Add(@e.Title);
+            }
+            
+        }
+
+
+
+        var exerciseChart = new Chart(document.getElementById("bar-chart-grouped"), {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Json.Serialize(@date)),
+                datasets:
+                [
+                    {
+                        label: "Type of Exercise",
+                        backgroundColor: "#3e95cd",
+                        data: @Html.Raw(Json.Serialize(@title))
+                    },
+                    {
+                        label: "Duration(minutes)",
+                        backgroundColor: "#3e95cd",
+                        data: @Html.Raw(Json.Serialize(@duration))
+                    }
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Total Workout Time'
+                },
+                scales:
+                {
+                    xAxes:
+                    [{
+                        ticks:
+                        {
+                           autoSkip: false
+                        }
+                    }],
+                    yAxes:
+                    [{
+                        ticks:
+                        {
+                           beginAtZero: true,
+                           min: 0
+                        }
+                     }],
+
+                }
+            }
+        });
+
+    </script>
+}
+</div>

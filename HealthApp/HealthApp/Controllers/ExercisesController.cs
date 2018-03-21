@@ -30,7 +30,39 @@ namespace HealthApp.Controllers
             ApplicationUser user = await GetCurrentUserAsync();
             return View(await _context.Exercises
                 .Where(us => us.User == user)
+                .OrderByDescending(d => d.Date)
                 .ToListAsync());
+        }
+
+        public async Task<List<Exercise>> ChartDetails()
+        {
+            ApplicationUser user = await GetCurrentUserAsync();
+            var chartData = await _context.Exercises
+                .Where(u => u.User == user)
+                .Where(d => Int32.Parse(d.Duration) > 0)
+                .OrderByDescending(d => d.Date)
+                .Take(7)
+                .ToListAsync();
+
+                List<Exercise> ExerciseData = new List<Exercise>();
+                    foreach(var exercise in chartData)
+                    {
+                        Exercise ExerciseReport = new Exercise
+                        {
+                            Date = exercise.Date,
+                            Duration = exercise.Duration,
+                            Title = exercise.Title
+                        };
+
+                            ExerciseData.Add(ExerciseReport);
+                    }
+            return ExerciseData;
+        }
+
+        // GET: ExerciseChart
+        public async Task<IActionResult> ExerciseChart()
+        {
+            return View(await ChartDetails());
         }
 
         // GET: Exercises/Details/5
@@ -109,8 +141,9 @@ namespace HealthApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ExerciseId,Title,Weight,Sets,Reps")] Exercise exercise)
+        public async Task<IActionResult> Edit(int id, [Bind("ExerciseId,Duration,Date,Title,Weight,Sets,Reps")] Exercise exercise)
         {
+            ModelState.Remove("User");
             if (id != exercise.ExerciseId)
             {
                 return NotFound();
