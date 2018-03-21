@@ -111,6 +111,7 @@ namespace HealthApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("MealId,Title,Protein,Carbohydrates,Sugar,Sodium")] Meal meal)
         {
+            ModelState.Remove("User");
             if (id != meal.MealId)
             {
                 return NotFound();

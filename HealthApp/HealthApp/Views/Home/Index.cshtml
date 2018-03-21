@@ -8,7 +8,9 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-
+    <div>
+        <h2></h2>
+    </div>
 
     <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
         <ol class="carousel-indicators">
@@ -56,7 +58,7 @@
                     <p>
                         Medical Log
                     </p>
-                    <a class="btn btn-default" href="../MedicalLog/Index">
+                    <a class="btn btn-default" href="../MedicalRecords/Index">
                         Go!
                     </a>
 
@@ -71,6 +73,9 @@
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+    </div>
+    <div>
+
     </div>
 }
 else

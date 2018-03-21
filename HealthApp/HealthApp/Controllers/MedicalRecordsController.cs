@@ -31,6 +31,7 @@ namespace HealthApp.Controllers
             ApplicationUser user = await GetCurrentUserAsync();
             return View(await _context.MedicalRecords
                 .Where(m => m.User == user)
+                .OrderByDescending(d => d.Date)
                 .ToListAsync());
         }
 
@@ -115,6 +116,7 @@ namespace HealthApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("MedicalRecordId,RedBloodCount,WhiteBloodCount,BloodGlucose,Cholestorol,Hemoglobin,Iron,B12")] MedicalRecord medicalRecord)
         {
+            ModelState.Remove("User");
             if (id != medicalRecord.MedicalRecordId)
             {
                 return NotFound();

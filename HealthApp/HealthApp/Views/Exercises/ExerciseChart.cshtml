@@ -35,14 +35,14 @@
                 labels: @Html.Raw(Json.Serialize(@date)),
                 datasets:
                 [
-                    {
-                        label: "Type of Exercise",
-                        backgroundColor: "#3e95cd",
+                    @*{
+                        label: "Exercise",
+                        backgroundColor: "#529f88",
                         data: @Html.Raw(Json.Serialize(@title))
-                    },
+                    },*@
                     {
                         label: "Duration(minutes)",
-                        backgroundColor: "#3e95cd",
+                        backgroundColor: "#529f88",
                         data: @Html.Raw(Json.Serialize(@duration))
                     }
                 ]
@@ -65,8 +65,8 @@
                     [{
                         ticks:
                         {
-                           beginAtZero: true,
-                           min: 0
+                            beginAtZero: true,
+                            min: 0
                         }
                      }],
 
