@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: #f4fdff;
+    background-color: #F1ECE8;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
@@ -38,7 +38,7 @@
 
 /* NavBar */
 .navbar {
-    background-color: #2A5B66;
+    background-color: #595959;
 }
 
     .navbar .navbar-brand {
@@ -187,3 +187,19 @@
         color: #961c8b;
         background-color: #22bfc3;
     }
+
+.fix {
+    max-width: 30%;
+}
+
+.color {
+    background-color: #80B8B5;
+}
+
+.back {
+    background-color: #9DB4C0;
+}
+
+.jumbotron {
+    background-image: url(../images/intro.jpg);
+}
