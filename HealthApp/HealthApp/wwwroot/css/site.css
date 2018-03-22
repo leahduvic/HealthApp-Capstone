@@ -48,7 +48,7 @@
         .navbar .navbar-brand:hover,
         .navbar .navbar-brand:focus {
             color: #ffffff;
-        }
+   }
 
     .navbar .navbar-text {
         color: #ecf0f1;
@@ -202,4 +202,16 @@
 
 .jumbotron {
     background-image: url(../images/intro.jpg);
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #ecf0f1;
+}
+
+    .navbar-default .navbar-nav > li > a:hover {
+        color: #9DB4C0;
+    }
+
+.jumbotron {
+    min-height: 500px;
 }
