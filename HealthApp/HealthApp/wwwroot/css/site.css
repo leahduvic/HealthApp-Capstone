@@ -38,7 +38,7 @@
 
 /* NavBar */
 .navbar {
-    background-color: #313e81;
+    background-color: #2A5B66;
 }
 
     .navbar .navbar-brand {
@@ -47,7 +47,7 @@
 
         .navbar .navbar-brand:hover,
         .navbar .navbar-brand:focus {
-            color: #961c8b;
+            color: #ffffff;
         }
 
     .navbar .navbar-text {
@@ -55,12 +55,12 @@
     }
 
         .navbar .navbar-text a {
-            color: #961c8b;
+            color: #ffffff;
         }
 
             .navbar .navbar-text a:hover,
             .navbar .navbar-text a:focus {
-                color: #961c8b;
+                color: #ffffff;
             }
 
     .navbar .navbar-nav .nav-link {
@@ -71,7 +71,7 @@
 
         .navbar .navbar-nav .nav-link:not(.disabled):hover,
         .navbar .navbar-nav .nav-link:not(.disabled):focus {
-            color: #961c8b;
+            color: #ffffff;
         }
 
     .navbar .navbar-nav .nav-item.active .nav-link,
@@ -80,7 +80,7 @@
     .navbar .navbar-nav .nav-item.show .nav-link,
     .navbar .navbar-nav .nav-item.show .nav-link:hover,
     .navbar .navbar-nav .nav-item.show .nav-link:focus {
-        color: #961c8b;
+        color: #ffffff;
         background-color: #22bfc3;
     }
 
@@ -107,7 +107,7 @@
     }
 
         .navbar .navbar-link:hover {
-            color: #961c8b;
+            color: #ffffff;
         }
 
 @media (max-width: 575px) {

@@ -28,10 +28,18 @@ namespace HealthApp.Controllers
         public async Task<IActionResult> Index()
         {
             ApplicationUser user = await GetCurrentUserAsync();
-            return View(await _context.Exercises
-                .Where(us => us.User == user)
-                .OrderByDescending(d => d.Date)
-                .ToListAsync());
+            var userData = _context.Exercises.Where(um => um.User.Id == user.Id);
+            if (userData.Count() == 0)
+            {
+                return RedirectToAction("Create");
+            }
+            else
+            {
+                return View(await _context.Exercises
+                    .Where(us => us.User == user)
+                    .OrderByDescending(d => d.Date)
+                    .ToListAsync());
+            }
         }
 
         public async Task<List<Exercise>> ChartDetails()

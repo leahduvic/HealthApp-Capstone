@@ -17,10 +17,13 @@ namespace HealthApp.Models
         [Required]
         public DateTime Date { get; set; }
 
+        [Display(Name = "Red Blood Count")]
         public int RedBloodCount { get; set; }
 
+        [Display(Name = "White Blood Count")]
         public int WhiteBloodCount { get; set; }
 
+        [Display(Name = "Blood Glucose")]
         public int BloodGlucose { get; set; }
 
         public int Cholestorol { get; set; }

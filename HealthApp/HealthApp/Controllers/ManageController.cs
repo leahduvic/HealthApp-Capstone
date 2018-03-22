@@ -311,6 +311,15 @@ namespace HealthApp.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> UpdateDetails()
+        {
+            ApplicationUser user = await _userManager.GetUserAsync(User);
+            var userData = _context.Measurements.Where(um => um.User.Id == user.Id);
+            
+             return View();
+        }
+
+        [HttpGet]
         public async Task<IActionResult> SettingsDetails()
         {
             ApplicationUser user = await _userManager.GetUserAsync(User);

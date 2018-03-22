@@ -29,10 +29,18 @@ namespace HealthApp.Controllers
         public async Task<IActionResult> Index()
         {
             ApplicationUser user = await GetCurrentUserAsync();
-            return View(await _context.MedicalRecords
+            var userData = _context.MedicalRecords.Where(um => um.User.Id == user.Id);
+            if (userData.Count() == 0)
+            {
+                return RedirectToAction("Create");
+            }
+            else
+            {
+                return View(await _context.MedicalRecords
                 .Where(m => m.User == user)
                 .OrderByDescending(d => d.Date)
                 .ToListAsync());
+            }
         }
 
         // GET: MedicalRecords/Details/5
@@ -114,7 +122,7 @@ namespace HealthApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MedicalRecordId,RedBloodCount,WhiteBloodCount,BloodGlucose,Cholestorol,Hemoglobin,Iron,B12")] MedicalRecord medicalRecord)
+        public async Task<IActionResult> Edit(int id, [Bind("MedicalRecordId,Date,RedBloodCount,WhiteBloodCount,BloodGlucose,Cholestorol,Hemoglobin,Iron,B12")] MedicalRecord medicalRecord)
         {
             ModelState.Remove("User");
             if (id != medicalRecord.MedicalRecordId)

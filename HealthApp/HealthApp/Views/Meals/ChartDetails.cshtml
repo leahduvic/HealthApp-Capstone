@@ -1,0 +1,41 @@
+﻿@model List<HealthApp.Models.Meal>
+
+    <canvas id="pie-chart" width="800" height="450"></canvas>
+
+@section Scripts {
+    <script type="text/javascript">
+    @{ 
+        
+        var Protein = 0;
+        var Carbohydrates = 0;
+        var Sugar = 0;
+        var Sodium = 0;
+
+        @foreach (var n in Model)
+        {
+            Protein = Protein + n.Protein;
+            Carbohydrates = Carbohydrates + n.Carbohydrates++;
+            Sugar = Sugar + n.Sugar++;
+            Sodium = Sodium + n.Sodium++;
+        }
+
+            List<int> NutritionData = new List<int> {Protein, Carbohydrates, Sugar, Sodium};
+        }
+
+                var MealChart = new Chart(document.getElementById("pie-chart"), {
+
+                    type: 'pie',
+                    data: {
+
+                        labels: ["Protein", "Carbohydrates", "Sodium", "Sugar"],
+                        datasets: [{
+                    label: 'Food Intake',
+                            data: @Html.Raw(Json.Serialize(@NutritionData)),
+                            backgroundColor:
+        
+                            ["#F03A47", "#01BAEF", "#6B2D5C", "#20BF55"]
+                }]
+            }
+        });
+    </script>
+}

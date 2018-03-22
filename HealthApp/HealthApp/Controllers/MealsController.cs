@@ -29,9 +29,55 @@ namespace HealthApp.Controllers
         public async Task<IActionResult> Index()
         {
             ApplicationUser user = await GetCurrentUserAsync();
-            return View(await _context.Meals
+            var userData = _context.Meals.Where(um => um.User.Id == user.Id);
+            if (userData.Count() == 0)
+            {
+                return RedirectToAction("Create");
+            }
+            else
+            { 
+                return View(await _context.Meals
                     .Where(s => s.User == user)
                     .ToListAsync());
+            }
+        }
+
+        public async Task<IActionResult> ChartDetails()
+        {
+            ApplicationUser user = await GetCurrentUserAsync();
+            var chartData = await _context.Meals
+                .Where(u => u.User == user)
+                .OrderByDescending(d => d.MealId)
+                .Take(7)
+                .ToListAsync();
+            
+            return View(chartData);
+        }
+
+        public async Task<List<Meal>> MealDetails()
+        {
+            ModelState.Remove("User");
+            ApplicationUser user = await GetCurrentUserAsync();
+            var chartData = await _context.Meals
+                .Where(u => u.User == user)
+                .Take(7)
+                .ToListAsync();
+
+            List<Meal> MealReports = new List<Meal>();
+
+            foreach(var m in chartData)
+            {
+                Meal newReport = new Meal
+                {
+                    Protein = (int)m.Protein,
+                    Carbohydrates = (int)m.Carbohydrates,
+                    Sugar = (int)m.Sugar,
+                    Sodium = (int)m.Sodium
+                };
+
+                MealReports.Add(newReport);
+            }
+            return MealReports;
         }
 
         // GET: meals/details/5
